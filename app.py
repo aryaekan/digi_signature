@@ -49,10 +49,10 @@ def sign_document():
         "signature": signature_b64
     }
     
-    # 3. URL Verifikasi langsung mengarah ke halaman dedicated verify
-    verify_url = f"http://localhost:5000/verify/{doc_id}"
+    # 3. Otomatis menyesuaikan domain server (bisa localhost atau URL Render/Cloud)
+    verify_url = request.host_url + f"verify/{doc_id}"
     
-    # 4. Generate QR Code (Diperbaiki menggunakan warna 'black')
+    # 4. Generate QR Code
     qr = qrcode.QRCode(version=1, box_size=10, border=4)
     qr.add_data(verify_url)
     qr.make(fit=True)
